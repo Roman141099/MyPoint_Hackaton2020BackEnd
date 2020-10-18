@@ -21,6 +21,8 @@ public class User {
     private String geoPoint;
     @SerializedName("Got order")
     private boolean gotOrder;
+    @SerializedName("Rating")
+    private double rating = 4.5;
 
 
 
@@ -29,6 +31,14 @@ public class User {
         currentSession = null;
         firstName = "DefaultFirstName";
         lastName = "DefaultLastName";
+    }
+
+    public double getRating() {
+        return rating;
+    }
+
+    public void setRating(double rating) {
+        this.rating = rating;
     }
 
     public String getGeoPoint() {

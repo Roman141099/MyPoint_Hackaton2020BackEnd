@@ -19,11 +19,13 @@ public class OrderSession extends Session {
             user.setBusy(false);
             user.setGotOrder(false);
             terminateAllProcesses();
+            user.setRating(user.getRating() - 0.3);
             return "Вы отказались от заказа";
         }
         if (inputTxt.equals("Принять")) {
             orderConfirmed = true;
             buttons = List.of("Доставлено", "Не доставлено");
+            user.setRating(user.getRating() + 0.1);
             return "Вы приняли заказ, при успешном его выполнении необходимо подтвердить его доставку клавишей 'Доставлено'";
         }
         if (orderConfirmed) {

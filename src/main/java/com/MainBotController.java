@@ -110,7 +110,9 @@ public class MainBotController extends TelegramLongPollingBot implements Runnabl
                 sessionState.put(user.getUserChatId(), user);
                 recordInfo(Paths.get(URL_TO_DB));
 
-                sendOrder.setText("Вам одобрен заказ на доставку холодильника\nПринять заказ?");
+                sendOrder.setText("Вам одобрен следующий заказ:\n" +
+                        "Доставить продукты из филиала сети \"Айгюль\" по адресу: Якутск, Пионерская, 30. Адрес клиента: Якутск, Пояркова, 19.\n" +
+                        "Вы принимаете заказ?");
                 ReplyKeyboardMarkup acceptOrd = new ReplyKeyboardMarkup();
                 acceptOrd.setResizeKeyboard(true);
                 KeyboardRow rowAcc = new KeyboardRow();
@@ -181,12 +183,11 @@ public class MainBotController extends TelegramLongPollingBot implements Runnabl
         SendMessage sm = new SendMessage();
         sm.setChatId(user.getUserChatId());
         String info = String.format(
-                "Сетевой статус - %s\n" +
-                        "Статус занятости - %s\n" +
-                        "Рейтинг - \n" +
-                        "Заработано - \n" +
-                        "Заказов доставлено - ", user.isOnlineStatus() ? "Online" : "Offline",
-                user.isBusy() ? "Занят" : "Свободен");
+                """
+                        Сетевой статус - %s
+                        Статус занятости - %s
+                        Рейтинг - %1.1f""", user.isOnlineStatus() ? "Online" : "Offline",
+                user.isBusy() ? "Занят" : "Свободен", user.getRating());
         sm.setText(info);
         SendChatAction sc = new SendChatAction();
         sc.setChatId(user.getUserChatId());
