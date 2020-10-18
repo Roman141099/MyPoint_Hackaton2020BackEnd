@@ -1,0 +1,17 @@
+{
+  "1082560005": {
+    "User firstname": "Roman",
+    "User lastname": "Unknown",
+    "User ID": 1082560005,
+    "Session settings": {
+      "orderConfirmed": false,
+      "sessionOpened": false,
+      "Session type endpoint": "com.OrderSession"
+    },
+    "Online": true,
+    "Busy": true,
+    "Has geolocation": false,
+    "Stream geo point": "53.211044|50.235405",
+    "Got order": true
+  }
+}

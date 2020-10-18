@@ -1,6 +1,10 @@
 import GoogleAPI.DirectionCreator;
 import GoogleAPI.GeoCoding;
 import DataBaseQueries.DBListener;
+import com.MainBotController;
+import org.telegram.telegrambots.ApiContextInitializer;
+import org.telegram.telegrambots.meta.TelegramBotsApi;
+import org.telegram.telegrambots.meta.exceptions.TelegramApiRequestException;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -30,5 +34,15 @@ public class Launcher {
 
         DBListener listener = new DBListener(URL, SQLProperties);
         listener.run();
+
+        ApiContextInitializer.init();
+        TelegramBotsApi tgBotsAPI = new TelegramBotsApi();
+        MainBotController currentBot = new MainBotController(URL, SQLProperties);
+        try {
+            tgBotsAPI.registerBot(currentBot);
+        } catch (TelegramApiRequestException e) {
+            e.printStackTrace();
+        }
+
     }
 }
